@@ -8,6 +8,7 @@
     {% if user.is_authenticated %}
     <h1>Rango says... hello {{ user.username }}!</h1>
         <a href="/quest/logout/">Logout</a><br />
+        <a href="criacao">Criar quest</a>
     {% else %}
     <h1>Rango says... hello world!</h1>
         <a href="quest/register/">Register Here</a>

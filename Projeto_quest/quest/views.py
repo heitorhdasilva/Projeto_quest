@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from quest.models import Questionario
 
 def register(request):
 
@@ -46,11 +47,25 @@ def user_login(request):
             login(request,user)
             return HttpResponseRedirect('/quest/')
 
-
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print("Invalid login details: {0}, {1}".format( username, password ))
+            return HttpResponse("Algum campo invalido <a href=>Voltar</a>")
     else:
 
         return render(request,'quest/login.html',{})
 
+def create_quest(request):
+    if request.method == 'POST':
+        data_final = request.POST.get('data_final')
+        titulo = request.POST.get('titulo')
+
+        quest = Questionario(
+            data_final=data_final, titulo=titulo
+        )
+
+        quest.save()
+    return render(request,'quest/home.html')
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
