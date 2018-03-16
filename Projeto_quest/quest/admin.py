@@ -1,3 +1,6 @@
 from django.contrib import admin
+from quest.models import Questionario
 
-# Register your models here.
+admin.site.register(Questionario)
+
+

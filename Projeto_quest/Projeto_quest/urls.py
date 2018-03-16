@@ -6,5 +6,5 @@ from django.conf.urls import url,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'', include('quest.urls')),
+    url(r'quest/', include('quest.urls')),
 ]
