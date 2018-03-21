@@ -7,12 +7,12 @@
 <body>
     {% if user.is_authenticated %}
     <h1>Rango says... hello {{ user.username }}!</h1>
-        <a href="/quest/logout/">Logout</a><br />
-        <a href="criacao">Criar quest</a>
+        <a href={% url 'logout' %}>Logout</a><br />
+        <a href={% url 'perguntas_add' %}>Criar perguntas</a>
     {% else %}
     <h1>Rango says... hello world!</h1>
-        <a href="quest/register/">Register Here</a>
-        <a href="/quest/login/">Login</a>
+        <a href={% url 'register' %}>Register Here</a>
+        <a href={% url 'login' %}>Login</a>
     {% endif %}
     </body>
 </html>

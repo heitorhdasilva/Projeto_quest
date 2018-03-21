@@ -5,7 +5,20 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from quest.models import Questionario
+from quest.models import Questionario, Perguntas
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+class PerguntasCreate(CreateView):
+    model = Perguntas
+    fields = ['texto']
+    success_url = '/quest/'
+
+class PerguntasUpdate(UpdateView):
+    model = Perguntas
+    fields = ['texto']
+
+class PerguntasDelete(DeleteView):
+    model = Perguntas
 
 def register(request):
 
