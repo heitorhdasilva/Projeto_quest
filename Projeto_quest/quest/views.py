@@ -7,18 +7,26 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from quest.models import Questionario, Perguntas
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
+from django.urls import reverse_lazy
+
+class PerguntasListView(ListView):
+    model = Perguntas
 
 class PerguntasCreate(CreateView):
     model = Perguntas
     fields = ['texto']
-    success_url = '/quest/'
+    success_url = '/quest/perguntas'
 
 class PerguntasUpdate(UpdateView):
     model = Perguntas
     fields = ['texto']
+    success_url = '/quest/perguntas'
 
 class PerguntasDelete(DeleteView):
     model = Perguntas
+    template_name = 'quest/perguntas_comfirm_delete.html'
+    success_url = reverse_lazy('perguntas')
 
 def register(request):
 
